@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://blxoaaoq5ojah"]
 
 [ext_resource type="Texture2D" uid="uid://dxiupq0u4we7p" path="res://assets/sprites/Dial temp.png" id="1_nqp4q"]
-[ext_resource type="Script" path="res://scripts/State Machine.gd" id="3_qe3na"]
-[ext_resource type="Script" path="res://scripts/DialStandby.gd" id="4_a2s7b"]
-[ext_resource type="Script" path="res://scripts/DialTurning.gd" id="5_ctse4"]
+[ext_resource type="Script" path="res://scripts/States/State Machine.gd" id="3_qe3na"]
+[ext_resource type="Script" path="res://scripts/States/DialStandby.gd" id="4_a2s7b"]
+[ext_resource type="Script" path="res://scripts/States/DialTurning.gd" id="5_ctse4"]
 
 [sub_resource type="GDScript" id="GDScript_wrp2p"]
 script/source = "extends Node2D
@@ -12,7 +12,7 @@ script/source = "extends Node2D
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwpkk"]
 radius = 36.0139
 
-[node name="Dial" type="Node2D"]
+[node name="Dial" type="Node2D" groups=["Random Event Nodes"]]
 script = SubResource("GDScript_wrp2p")
 
 [node name="Sprite" type="Sprite2D" parent="." groups=["Dial Sprite"]]

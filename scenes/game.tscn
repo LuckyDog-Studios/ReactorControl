@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c33o2lwv0nhgd"]
+[gd_scene load_steps=9 format=3 uid="uid://c33o2lwv0nhgd"]
 
 [ext_resource type="Texture2D" uid="uid://cxbc3iybvsxol" path="res://assets/sprites/temp bg.png" id="1_ikh0n"]
 [ext_resource type="PackedScene" uid="uid://blxoaaoq5ojah" path="res://scenes/dial.tscn" id="2_0eu7q"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cgk103hsb1ves" path="res://scenes/temperature_system.tscn" id="3_lucyu"]
 [ext_resource type="Texture2D" uid="uid://cnkxuv67uivd4" path="res://assets/sprites/Screen slight side pov.png" id="6_s72d6"]
 [ext_resource type="Texture2D" uid="uid://dfjsmwig40k57" path="res://assets/sprites/Sreen front pov.png" id="7_kgpya"]
+[ext_resource type="PackedScene" uid="uid://d3r74yl807ykd" path="res://scenes/random_event_machine.tscn" id="8_2xqu4"]
 
 [node name="Game" type="Node2D"]
 
@@ -37,6 +38,7 @@ flip_h = true
 
 [node name="Dial" parent="." instance=ExtResource("2_0eu7q")]
 position = Vector2(576, 376)
+script = null
 
 [node name="Dialogue" parent="." instance=ExtResource("3_33gnw")]
 offset_left = -1.0
@@ -52,3 +54,5 @@ offset_right = 493.0
 offset_bottom = 94.0
 size_flags_horizontal = 8
 metadata/_edit_use_anchors_ = true
+
+[node name="Random Event Machine" parent="." instance=ExtResource("8_2xqu4")]

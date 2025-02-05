@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3r74yl807ykd"]
+
+[ext_resource type="Script" path="res://scripts/Random Event/Random Event Machine.gd" id="1_qw470"]
+[ext_resource type="Script" path="res://scripts/Random Event/DialReverseEvent.gd" id="2_j5dkq"]
+
+[node name="Random Event Machine" type="Node"]
+script = ExtResource("1_qw470")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Dial Reverse Control" type="Node" parent="."]
+script = ExtResource("2_j5dkq")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
