@@ -9,6 +9,10 @@ func _ready() -> void:
 		if node is RandomEvent:
 			all_events[node.name.to_lower()] = node
 
+func _process(delta: float) -> void:
+	for event_name in all_events:
+		var event = all_events[event_name]
+		event.Update(delta)
 
 # roll dice to add effects - every 1s (changeable)
 func _on_timer_timeout() -> void:

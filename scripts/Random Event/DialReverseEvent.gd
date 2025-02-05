@@ -1,34 +1,50 @@
 #this event reverses control of the dial for a short time
 extends RandomEvent
 
-const effect_duration = 5
-const cooldown_time = 20
+const EFFECT_DURATION = 5
+const COOLDOWN_TIME = 20
+const ROLL_CHANCE_NUMERATOR = 1
+const ROLL_CHANCE_DENOMINATOR = 20
+
 var cooldown_active = false
 var effect_active = false
+var cooldown_timer = 0.0
+var effect_timer = 0.0
 
-const roll_chance_numer = 1
-const roll_chance_denom = 20
-#this for example means 1/80 chance
 
 @onready var dial = get_node("/root/Game/Dial/State Machine/Turning")
 
+#called every frame in Random Event Machine
+func Update(delta: float) -> void:
+	if effect_active:
+		effect_timer -= delta
+		if effect_timer <= 0:
+			revert_effect()
+	
+	if cooldown_active:
+		cooldown_timer -= delta
+		if cooldown_timer <= 0:
+			cooldown_active = false
 
 func apply_effect() -> void:
 	if effect_active:
 		return
-	effect_active = true
-	#actual effect code
-	dial.reverseControl = -1 #reverses turning control
-	print("effect applied")
-	await get_tree().create_timer(effect_duration).timeout # allow effect to stay for (duration) seconds
 	
-	#revert effect
-	effect_active = false
-	revert_effect()
+	effect_active = true
+	effect_timer = EFFECT_DURATION
+	
+	#actual effect code
+	if dial:
+		dial.reverseControl = -1 #reverses turning control
+	print("effect applied")
+
 
 
 func revert_effect() -> void:
-	dial.reverseControl = 1
+	effect_active = false
+	if dial:
+		dial.reverseControl = 1 #restores turning control
+	
 	apply_cooldown()
 
 
@@ -38,10 +54,9 @@ func roll_dice() -> bool:
 	print("rolling chance")
 	if cooldown_active:
 		return false
-	return super.get_roll(roll_chance_numer, roll_chance_denom)
+	return super.get_roll(ROLL_CHANCE_NUMERATOR, ROLL_CHANCE_DENOMINATOR)
 	
 
 func apply_cooldown() -> void:
 	cooldown_active = true
-	await get_tree().create_timer(cooldown_time).timeout
-	cooldown_active = false
+	cooldown_timer = COOLDOWN_TIME

@@ -2,6 +2,10 @@ class_name RandomEvent extends Node
 
 signal EffectEnded
 
+
+func Update(_delta: float) -> void:
+	pass
+
 func apply_effect() -> void:
 	pass
 	
