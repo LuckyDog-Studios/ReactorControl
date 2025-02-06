@@ -1,7 +1,7 @@
 
 extends Control
 
-@onready var text: RichTextLabel = $RichTextLabel
+@onready var text: RichTextLabel = $"MarginContainer/RichTextLabel"
 const letter_delay = 0.1
 
 

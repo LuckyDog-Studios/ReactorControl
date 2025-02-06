@@ -1,8 +1,8 @@
 extends Control
 
 
-@onready var label: Label = $Label
-@onready var dial_sprite: Sprite2D = $"../Dial/Sprite"
+@onready var label: Label = $"CenterContainer/Label"
+@onready var dial_sprite: Sprite2D = $"../../Dial/Sprite"
 @onready var timer: Timer = $Timer
 
 @export var starting_temp: int = 150
