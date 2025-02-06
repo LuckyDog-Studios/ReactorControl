@@ -1,5 +1,6 @@
 extends Control
 
+
 @onready var label: Label = $Label
 @onready var dial_sprite: Sprite2D = $"../Dial/Sprite"
 @onready var timer: Timer = $Timer
@@ -19,6 +20,7 @@ var is_flickering = false
 var color_min_value = 30.0
 var color_max_value = 200.0
 
+signal GameOver()
 
 func _process(delta: float) -> void:
 	is_flickering = true if current_temp >= 160 else false
@@ -33,13 +35,16 @@ func _process(delta: float) -> void:
 		label.visible = true
 	
 	label.self_modulate = get_color_from_value(current_temp)
+	
+	if current_temp >= 200:
+		GameOver.emit()
+	
 
 
 func _ready() -> void:
 	label.text = "Temp: " + str(starting_temp) + " C"
 	current_temp = starting_temp
 	timer.start()
-
 
 func _on_timer_timeout() -> void:
 	current_temp = label.text.to_int()
