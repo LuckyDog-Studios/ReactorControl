@@ -16,6 +16,7 @@
 script = ExtResource("1_dnj6m")
 
 [node name="Art" type="Node2D" parent="."]
+scale = Vector2(1.66344, 1.66344)
 
 [node name="TempBg" type="Sprite2D" parent="Art"]
 position = Vector2(576, 324.5)
@@ -41,7 +42,7 @@ texture = ExtResource("6_s72d6")
 flip_h = true
 
 [node name="Dial" parent="." instance=ExtResource("2_0eu7q")]
-position = Vector2(576, 376)
+position = Vector2(944, 600)
 
 [node name="Random Event Machine" parent="." instance=ExtResource("8_2xqu4")]
 
@@ -54,6 +55,7 @@ anchors_preset = 12
 anchor_top = 1.0
 offset_top = -648.0
 grow_vertical = 0
+text_queue = Array[String](["?: Control to Reactor Operator—do you copy? The reactor's unstable! We're at critical levels!", "Reactor Operator: What’s happening? The gauges… they’re off the charts…", "Control: Containment's failing! Initiate emergency shutdown now—abort everything!", "Reactor Operator: Come on… hold together… I have to fix this…", "Control: We're losing you! The core’s about to breach—get out—"])
 
 [node name="Temperature System" parent="UI Elements" instance=ExtResource("3_lucyu")]
 anchors_preset = -1
