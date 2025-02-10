@@ -2,22 +2,6 @@
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_p2008"]
 
-[sub_resource type="Animation" id="Animation_gubre"]
-resource_name = "start"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1.93187, 1),
-"update": 0,
-"values": [Color(0.101636, 0.0218574, 0.36212, 0), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_hdxlj"]
 length = 0.001
 tracks/0/type = "value"
@@ -31,6 +15,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.2, 0.0666667, 0.623529, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gubre"]
+resource_name = "start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7li30"]

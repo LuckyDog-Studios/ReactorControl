@@ -51,7 +51,6 @@ func revert_effect() -> void:
 
 #returns true if random chance was hit
 func roll_dice() -> bool:
-	print("rolling chance")
 	if cooldown_active:
 		return false
 	return super.get_roll(ROLL_CHANCE_NUMERATOR, ROLL_CHANCE_DENOMINATOR)

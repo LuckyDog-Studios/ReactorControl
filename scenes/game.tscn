@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c33o2lwv0nhgd"]
+[gd_scene load_steps=16 format=3 uid="uid://c33o2lwv0nhgd"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dnj6m"]
 [ext_resource type="Texture2D" uid="uid://cxbc3iybvsxol" path="res://assets/sprites/temp bg.png" id="1_ikh0n"]
@@ -11,6 +11,130 @@
 [ext_resource type="PackedScene" uid="uid://d3r74yl807ykd" path="res://scenes/random_event_machine.tscn" id="8_2xqu4"]
 [ext_resource type="PackedScene" uid="uid://ct6eta633c7pu" path="res://scenes/explosion_effect.tscn" id="9_sxn86"]
 [ext_resource type="PackedScene" uid="uid://c0twpdx55si15" path="res://scenes/PauseMenu.tscn" id="11_mwg0y"]
+[ext_resource type="AudioStream" uid="uid://bi1n6oh7nc0ss" path="res://assets/sounds/738590__randomrecord19__alarm-4.wav" id="12_e3o6m"]
+
+[sub_resource type="Animation" id="Animation_b7270"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI Elements/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/738590Randomrecord19Alarm-4:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/738590Randomrecord19Alarm-4:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sounds/738590Randomrecord19Alarm-4:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_k614b"]
+resource_name = "starting_sequence"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI Elements/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.03333, 7),
+"transitions": PackedFloat32Array(1, 2.07053, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/738590Randomrecord19Alarm-4:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/738590Randomrecord19Alarm-4:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.8),
+"transitions": PackedFloat32Array(0.535887, 1),
+"update": 0,
+"values": [-80.0, -10.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sounds/738590Randomrecord19Alarm-4:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.7, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.8, 1.0]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7.76667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [PackedStringArray("Testing... Testing.. 123... Testing", "It is working!"), PackedStringArray("Noah", "Noah")],
+"method": &"type_array"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h3kk6"]
+_data = {
+"RESET": SubResource("Animation_b7270"),
+"starting_sequence": SubResource("Animation_k614b")
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_dnj6m")
@@ -44,28 +168,42 @@ flip_h = true
 [node name="Dial" parent="." instance=ExtResource("2_0eu7q")]
 position = Vector2(944, 600)
 
-[node name="Random Event Machine" parent="." instance=ExtResource("8_2xqu4")]
-
 [node name="Explosion Effect" parent="." instance=ExtResource("9_sxn86")]
 
 [node name="UI Elements" type="CanvasLayer" parent="."]
 
 [node name="Dialogue" parent="UI Elements" instance=ExtResource("3_33gnw")]
-anchors_preset = 12
-anchor_top = 1.0
-offset_top = -648.0
-grow_vertical = 0
-text_queue = Array[String](["?: Control to Reactor Operator—do you copy? The reactor's unstable! We're at critical levels!", "Reactor Operator: What’s happening? The gauges… they’re off the charts…", "Control: Containment's failing! Initiate emergency shutdown now—abort everything!", "Reactor Operator: Come on… hold together… I have to fix this…", "Control: We're losing you! The core’s about to breach—get out—"])
 
 [node name="Temperature System" parent="UI Elements" instance=ExtResource("3_lucyu")]
 anchors_preset = -1
 anchor_left = 0.4
 anchor_right = 0.599
 anchor_bottom = 0.0
-offset_left = 45.2
-offset_top = 32.0
-offset_right = -28.048
-offset_bottom = 214.0
+offset_left = 40.0
+offset_top = 104.0
+offset_right = -33.2479
+offset_bottom = 286.0
 size_flags_horizontal = 8
 
 [node name="Pause Menu" parent="UI Elements" instance=ExtResource("11_mwg0y")]
+
+[node name="ColorRect" type="ColorRect" parent="UI Elements"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h3kk6")
+}
+
+[node name="Random Event Machine" parent="." instance=ExtResource("8_2xqu4")]
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="738590Randomrecord19Alarm-4" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("12_e3o6m")
