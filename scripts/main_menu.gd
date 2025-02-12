@@ -6,7 +6,7 @@ func _ready() -> void:
 func _on_start_button_pressed() -> void:
 	$AnimationPlayer.play("start")
 	await $AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	get_tree().change_scene_to_file("res://scenes/startingsequence.tscn")
 
 
 func _on_quit_button_pressed() -> void:

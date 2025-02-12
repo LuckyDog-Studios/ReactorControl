@@ -1,0 +1,191 @@
+[gd_scene load_steps=16 format=3 uid="uid://c33o2lwv0nhgd"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_xkqpl"]
+[ext_resource type="Texture2D" uid="uid://cxbc3iybvsxol" path="res://assets/sprites/temp bg.png" id="2_2nboh"]
+[ext_resource type="Texture2D" uid="uid://cv0xiybe3480p" path="res://assets/sprites/control panel temp 2.png" id="3_c8g3w"]
+[ext_resource type="Texture2D" uid="uid://cnkxuv67uivd4" path="res://assets/sprites/Screen slight side pov.png" id="4_l3pbo"]
+[ext_resource type="Texture2D" uid="uid://dfjsmwig40k57" path="res://assets/sprites/Sreen front pov.png" id="5_4fe1s"]
+[ext_resource type="PackedScene" uid="uid://be7yh8pbi0c6v" path="res://scenes/dialogue.tscn" id="6_21dy5"]
+[ext_resource type="PackedScene" uid="uid://c0twpdx55si15" path="res://scenes/PauseMenu.tscn" id="7_e4vty"]
+[ext_resource type="PackedScene" uid="uid://ct6eta633c7pu" path="res://scenes/explosion_effect.tscn" id="8_3ek5j"]
+[ext_resource type="Script" path="res://scripts/sounds.gd" id="10_r75c2"]
+[ext_resource type="AudioStream" uid="uid://dagy1ctsdc812" path="res://assets/sounds/alarm.wav" id="11_pu4yw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgn6p"]
+
+[sub_resource type="Animation" id="Animation_b7270"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI Elements/FadeInRectangle:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/AlarmSoundsPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/AlarmSoundsPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.0]
+}
+
+[sub_resource type="Animation" id="Animation_gpuvn"]
+resource_name = "repeat warning"
+length = 13.2333
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_k614b"]
+resource_name = "starting_sequence"
+length = 13.3667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI Elements/FadeInRectangle:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.03333, 7),
+"transitions": PackedFloat32Array(1, 2.07053, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7.76667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [PackedStringArray("Testing... Testing.. 123... Testing", "It is working!"), PackedStringArray("Noah", "Noah")],
+"method": &"type_array"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/AlarmSoundsPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sounds/AlarmSoundsPlayer:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.16667),
+"transitions": PackedFloat32Array(1.7411, 1),
+"update": 0,
+"values": [-80.0, -10.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h3kk6"]
+_data = {
+"RESET": SubResource("Animation_b7270"),
+"repeat warning": SubResource("Animation_gpuvn"),
+"starting_sequence": SubResource("Animation_k614b")
+}
+
+[node name="StartingSequence" type="Node2D"]
+script = ExtResource("1_xkqpl")
+
+[node name="Art" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_kgn6p")
+scale = Vector2(1.66344, 1.66344)
+
+[node name="TempBg" type="Sprite2D" parent="Art"]
+use_parent_material = true
+position = Vector2(576, 324.5)
+scale = Vector2(0.76494, 0.589464)
+texture = ExtResource("2_2nboh")
+
+[node name="Control Panel" type="Sprite2D" parent="Art"]
+use_parent_material = true
+position = Vector2(576, 568)
+scale = Vector2(0.794872, 0.794872)
+texture = ExtResource("3_c8g3w")
+
+[node name="LeftScreen" type="Sprite2D" parent="Art"]
+use_parent_material = true
+position = Vector2(228, 138)
+texture = ExtResource("4_l3pbo")
+
+[node name="MidScreen" type="Sprite2D" parent="Art"]
+use_parent_material = true
+position = Vector2(580, 138)
+texture = ExtResource("5_4fe1s")
+
+[node name="RightScreen" type="Sprite2D" parent="Art"]
+use_parent_material = true
+position = Vector2(956, 138)
+texture = ExtResource("4_l3pbo")
+flip_h = true
+
+[node name="UI Elements" type="CanvasLayer" parent="."]
+
+[node name="Dialogue" parent="UI Elements" instance=ExtResource("6_21dy5")]
+
+[node name="FadeInRectangle" type="ColorRect" parent="UI Elements"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Explosion Effect" parent="UI Elements" instance=ExtResource("8_3ek5j")]
+offset_left = -336.0
+offset_top = -144.0
+offset_right = -336.0
+offset_bottom = -144.0
+mouse_filter = 2
+
+[node name="Pause Menu" parent="UI Elements" instance=ExtResource("7_e4vty")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h3kk6")
+}
+
+[node name="Sounds" type="Node" parent="."]
+script = ExtResource("10_r75c2")
+
+[node name="AlarmSoundsPlayer" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_pu4yw")
+volume_db = -10.0
+
+[connection signal="DialogueComplete" from="UI Elements/Dialogue" to="." method="_on_dialogue_dialogue_complete"]
+[connection signal="finished" from="Sounds/AlarmSoundsPlayer" to="Sounds" method="_on_alarm_sounds_player_finished"]

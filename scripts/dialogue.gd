@@ -5,6 +5,8 @@ var letter_delay = 0.05
 @export var test_text_queue: Array[String] = ["Testimg testing...", "Andrew is a funny guy"]
 @export var test_queue_names: Array[String] = ["noah", "gyorgy"]
 
+signal DialogueComplete
+
 func type_text(line: String, speaker: String) -> void:
 	text.clear()
 	text.add_text(speaker + ": ")
@@ -28,6 +30,8 @@ func type_array(text_queue: Array[String], queue_names: Array[String]) -> void:
 		await type_text(text_queue[i], queue_names[i])
 		await yield_until_space_pressed()
 	$AnimationPlayer.play_backwards("appear")
+	
+	DialogueComplete.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
