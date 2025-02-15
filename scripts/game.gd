@@ -7,6 +7,10 @@ func _ready() -> void:
 	
 	if $"UI Elements/Temperature System":
 		$"UI Elements/Temperature System".connect("GameOver", game_over)
+		
+	
+	#so that I can actually see the damn viewport :)
+	$"UI Elements/FadeInRectangle".visible = true
 	
 
 func game_over():

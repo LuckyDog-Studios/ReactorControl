@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv0xiybe3480p"
-path="res://.godot/imported/control panel temp 2.png-7af47e091a0940cedcc154f5f8db2dcc.ctex"
+uid="uid://do5dysy0ox8m8"
+path="res://.godot/imported/table01.png-31f233c03a6ee4b589f035982328ed04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/control panel temp 2.png"
-dest_files=["res://.godot/imported/control panel temp 2.png-7af47e091a0940cedcc154f5f8db2dcc.ctex"]
+source_file="res://assets/sprites/table01.png"
+dest_files=["res://.godot/imported/table01.png-31f233c03a6ee4b589f035982328ed04.ctex"]
 
 [params]
 

@@ -1,10 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://c33o2lwv0nhgd"]
+[gd_scene load_steps=14 format=3 uid="uid://c33o2lwv0nhgd"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_xkqpl"]
-[ext_resource type="Texture2D" uid="uid://cxbc3iybvsxol" path="res://assets/sprites/temp bg.png" id="2_2nboh"]
-[ext_resource type="Texture2D" uid="uid://cv0xiybe3480p" path="res://assets/sprites/control panel temp 2.png" id="3_c8g3w"]
-[ext_resource type="Texture2D" uid="uid://cnkxuv67uivd4" path="res://assets/sprites/Screen slight side pov.png" id="4_l3pbo"]
-[ext_resource type="Texture2D" uid="uid://dfjsmwig40k57" path="res://assets/sprites/Sreen front pov.png" id="5_4fe1s"]
+[ext_resource type="Texture2D" uid="uid://dkcpjg3ip6ib7" path="res://assets/sprites/background01.png" id="2_61qe6"]
+[ext_resource type="Texture2D" uid="uid://bxjao8uvggrvr" path="res://assets/sprites/table02.png" id="2_81lqt"]
 [ext_resource type="PackedScene" uid="uid://be7yh8pbi0c6v" path="res://scenes/dialogue.tscn" id="6_21dy5"]
 [ext_resource type="PackedScene" uid="uid://c0twpdx55si15" path="res://scenes/PauseMenu.tscn" id="7_e4vty"]
 [ext_resource type="PackedScene" uid="uid://ct6eta633c7pu" path="res://scenes/explosion_effect.tscn" id="8_3ek5j"]
@@ -125,39 +123,18 @@ script = ExtResource("1_xkqpl")
 material = SubResource("ShaderMaterial_kgn6p")
 scale = Vector2(1.66344, 1.66344)
 
-[node name="TempBg" type="Sprite2D" parent="Art"]
-use_parent_material = true
-position = Vector2(576, 324.5)
-scale = Vector2(0.76494, 0.589464)
-texture = ExtResource("2_2nboh")
-
-[node name="Control Panel" type="Sprite2D" parent="Art"]
-use_parent_material = true
-position = Vector2(576, 568)
-scale = Vector2(0.794872, 0.794872)
-texture = ExtResource("3_c8g3w")
-
-[node name="LeftScreen" type="Sprite2D" parent="Art"]
-use_parent_material = true
-position = Vector2(228, 138)
-texture = ExtResource("4_l3pbo")
-
-[node name="MidScreen" type="Sprite2D" parent="Art"]
-use_parent_material = true
-position = Vector2(580, 138)
-texture = ExtResource("5_4fe1s")
-
-[node name="RightScreen" type="Sprite2D" parent="Art"]
-use_parent_material = true
-position = Vector2(956, 138)
-texture = ExtResource("4_l3pbo")
-flip_h = true
+[node name="Background01" type="Sprite2D" parent="Art"]
+position = Vector2(192.372, 108.209)
+scale = Vector2(0.601164, 0.601164)
+texture = ExtResource("2_61qe6")
+metadata/_edit_lock_ = true
 
 [node name="UI Elements" type="CanvasLayer" parent="."]
 
 [node name="Dialogue" parent="UI Elements" instance=ExtResource("6_21dy5")]
 
 [node name="FadeInRectangle" type="ColorRect" parent="UI Elements"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -165,13 +142,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="Explosion Effect" parent="UI Elements" instance=ExtResource("8_3ek5j")]
-offset_left = -336.0
-offset_top = -144.0
-offset_right = -336.0
-offset_bottom = -144.0
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Pause Menu" parent="UI Elements" instance=ExtResource("7_e4vty")]
 
@@ -186,6 +161,10 @@ script = ExtResource("10_r75c2")
 [node name="AlarmSoundsPlayer" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("11_pu4yw")
 volume_db = -10.0
+
+[node name="Table02" type="Sprite2D" parent="."]
+position = Vector2(320, 270)
+texture = ExtResource("2_81lqt")
 
 [connection signal="DialogueComplete" from="UI Elements/Dialogue" to="." method="_on_dialogue_dialogue_complete"]
 [connection signal="finished" from="Sounds/AlarmSoundsPlayer" to="Sounds" method="_on_alarm_sounds_player_finished"]
