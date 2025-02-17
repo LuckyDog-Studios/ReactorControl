@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://ecasjwcmkrt3"]
+
+[ext_resource type="Texture2D" uid="uid://bktxuhc5c4dhc" path="res://assets/sprites/display/display-frame.png" id="1_b7f4w"]
+[ext_resource type="Script" path="res://scripts/temperature/temperature_display.gd" id="1_vnst1"]
+[ext_resource type="Texture2D" uid="uid://cop7b0gtmq787" path="res://assets/sprites/display/display-screen-spritesheet.png" id="2_nn7a8"]
+[ext_resource type="FontFile" uid="uid://br4plp3vkv35k" path="res://assets/fonts/MightySouly-lxggD.ttf" id="2_qxvkl"]
+[ext_resource type="Script" path="res://scripts/States/State Machine.gd" id="4_pdwpq"]
+[ext_resource type="Script" path="res://scripts/States/DisplayBlinking.gd" id="5_33gom"]
+[ext_resource type="Script" path="res://scripts/States/DisplayNormal.gd" id="6_evbi3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20q2f"]
+atlas = ExtResource("2_nn7a8")
+region = Rect2(0, 0, 60, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bgdp"]
+atlas = ExtResource("2_nn7a8")
+region = Rect2(60, 0, 60, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8222k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20q2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bgdp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="temperature display" type="Node2D" node_paths=PackedStringArray("temperature_label")]
+script = ExtResource("1_vnst1")
+temperature_label = NodePath("Text")
+
+[node name="Frame" type="Sprite2D" parent="."]
+texture = ExtResource("1_b7f4w")
+
+[node name="Text" type="RichTextLabel" parent="."]
+offset_left = -30.0
+offset_top = -9.0
+offset_right = 30.0
+offset_bottom = 9.0
+theme_override_fonts/normal_font = ExtResource("2_qxvkl")
+bbcode_enabled = true
+text = "[center]Error[/center]
+
+"
+scroll_active = false
+
+[node name="Screen" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8222k")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.790347
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_pdwpq")
+initial_state = NodePath("Normal")
+
+[node name="Blinking" type="Node" parent="State Machine" node_paths=PackedStringArray("label")]
+script = ExtResource("5_33gom")
+label = NodePath("../../Text")
+
+[node name="Normal" type="Node" parent="State Machine"]
+script = ExtResource("6_evbi3")

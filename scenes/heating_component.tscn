@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btv0kv3lbfm20"]
+
+[ext_resource type="Script" path="res://scripts/temperature/heating_component.gd" id="1_gtpx2"]
+
+[node name="HeatingComponent" type="Node"]
+script = ExtResource("1_gtpx2")

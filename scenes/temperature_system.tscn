@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgk103hsb1ves"]
 
-[ext_resource type="Script" path="res://scripts/temperature_system.gd" id="1_xk5ph"]
+[ext_resource type="Script" path="res://scripts/temperature/temperature_system.gd" id="1_xk5ph"]
 [ext_resource type="FontFile" uid="uid://br4plp3vkv35k" path="res://assets/fonts/MightySouly-lxggD.ttf" id="2_3ww65"]
 
 [sub_resource type="Theme" id="Theme_m4cm7"]

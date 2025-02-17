@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d03nw5lgnriaw"]
+
+[ext_resource type="Script" path="res://scripts/temperature/temperature_controller.gd" id="1_uwgl0"]
+
+[node name="TemperatureController" type="Node"]
+script = ExtResource("1_uwgl0")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7tsm0iv7co2h"]
+
+[ext_resource type="Script" path="res://scripts/temperature/cooling_component.gd" id="1_yp56x"]
+
+[node name="CoolingComponent" type="Node"]
+script = ExtResource("1_yp56x")
