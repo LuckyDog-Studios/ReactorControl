@@ -30,9 +30,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="temperature display" type="Node2D" node_paths=PackedStringArray("temperature_label")]
+[node name="temperature display" type="Node2D" node_paths=PackedStringArray("temperature_label", "state_machine")]
 script = ExtResource("1_vnst1")
 temperature_label = NodePath("Text")
+state_machine = NodePath("State Machine")
 
 [node name="Frame" type="Sprite2D" parent="."]
 texture = ExtResource("1_b7f4w")

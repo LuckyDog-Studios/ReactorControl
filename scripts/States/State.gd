@@ -11,3 +11,6 @@ func Exit():
 
 func Update(_delta: float):
 	pass
+
+func ChangeState(state: String):
+	pass

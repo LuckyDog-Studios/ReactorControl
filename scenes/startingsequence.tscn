@@ -125,23 +125,18 @@ script = ExtResource("1_xkqpl")
 material = SubResource("ShaderMaterial_kgn6p")
 
 [node name="Background01" type="Sprite2D" parent="Art"]
-position = Vector2(192.372, 108.209)
-scale = Vector2(0.601164, 0.601164)
+position = Vector2(320, 180)
 texture = ExtResource("2_61qe6")
-metadata/_edit_lock_ = true
 
 [node name="Table02" type="Sprite2D" parent="Art"]
-position = Vector2(192.372, 162.314)
-scale = Vector2(0.601164, 0.601164)
+position = Vector2(320, 263)
 texture = ExtResource("2_81lqt")
 
 [node name="Reactor" parent="Art" instance=ExtResource("9_5ih3n")]
-position = Vector2(194.176, 0)
-scale = Vector2(0.601164, 0.601164)
+position = Vector2(326, 0)
 
 [node name="Display" parent="Art" instance=ExtResource("5_84us1")]
-position = Vector2(194.176, 6.6128)
-scale = Vector2(0.601164, 0.601164)
+position = Vector2(324, 12)
 
 [node name="UI Elements" type="CanvasLayer" parent="."]
 

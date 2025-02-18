@@ -4,6 +4,7 @@ extends Node
 @export var temperature_display: Node2D  # Link to TemperatureDisplay
 @export var heating_system: Node       # Link to HeatingSystem
 @export var cooling_system: Node       # Link to CoolingSystem
+@onready var explosion_effect: AnimationPlayer = $"../../CanvasLayer/Explosion Effect/AnimationPlayer"
 
 var current_temperature: float = 300.0
 var max_safe_temperature: float = 1000.0
@@ -53,8 +54,9 @@ func update_display():
 		temperature_display.update_temperature(current_temperature, reactor_state)
 
 func trigger_meltdown():
-	print("🔥 MELTDOWN! Reactor Exploding!")
-	# Explosion effects, damage logic, etc.
+	explosion_effect.play("explosion")
+	await explosion_effect.animation_finished
+	get_tree().quit()
 
 func trigger_freeze():
 	print("❄️ REACTOR TOO COLD! Systems shutting down!")

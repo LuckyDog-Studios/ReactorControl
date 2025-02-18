@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nj3uh2j0x68c"]
+[gd_scene load_steps=15 format=3 uid="uid://nj3uh2j0x68c"]
 
 [ext_resource type="PackedScene" uid="uid://ecasjwcmkrt3" path="res://scenes/temperature_display.tscn" id="1_khmli"]
 [ext_resource type="Texture2D" uid="uid://dkcpjg3ip6ib7" path="res://assets/sprites/background01.png" id="1_v36hj"]
@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://btv0kv3lbfm20" path="res://scenes/heating_component.tscn" id="4_jxf6i"]
 [ext_resource type="PackedScene" uid="uid://blxoaaoq5ojah" path="res://scenes/dial.tscn" id="4_v7shd"]
 [ext_resource type="Script" path="res://scripts/heating_button.gd" id="5_8bbl8"]
+[ext_resource type="PackedScene" uid="uid://ct6eta633c7pu" path="res://scenes/explosion_effect.tscn" id="5_kwxrp"]
 [ext_resource type="Script" path="res://scripts/cooling_button.gd" id="6_eg4nc"]
+[ext_resource type="PackedScene" uid="uid://dnhe1wc6qjqdu" path="res://scenes/side_screen.tscn" id="6_te6x1"]
+[ext_resource type="PackedScene" uid="uid://rklyl7n75bsr" path="res://scenes/side_screen_ui.tscn" id="7_al8yd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xaf5n"]
 
@@ -18,34 +21,49 @@ position = Vector2(274, 85)
 
 [node name="Art" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_xaf5n")
-position = Vector2(-275, -86)
-scale = Vector2(1.66344, 1.66344)
+position = Vector2(-274, -85)
 
 [node name="Background01" type="Sprite2D" parent="Art"]
-position = Vector2(192.372, 108.209)
-scale = Vector2(0.601164, 0.601164)
+position = Vector2(320, 180)
 texture = ExtResource("1_v36hj")
-metadata/_edit_lock_ = true
-
-[node name="Table02" type="Sprite2D" parent="Art"]
-position = Vector2(192.372, 162.314)
-scale = Vector2(0.601164, 0.601164)
-texture = ExtResource("2_84usu")
 
 [node name="Reactor" parent="Art" instance=ExtResource("3_uppgq")]
-position = Vector2(194.176, 0)
-scale = Vector2(0.601164, 0.601164)
+position = Vector2(320, 1)
+
+[node name="Table02" type="Sprite2D" parent="Art"]
+position = Vector2(320, 268)
+texture = ExtResource("2_84usu")
 
 [node name="Dial" parent="Art" instance=ExtResource("4_v7shd")]
-position = Vector2(194.777, 165.921)
+position = Vector2(319, 291)
+
+[node name="TempDisplay" parent="Art" instance=ExtResource("1_khmli")]
+position = Vector2(319, 12)
+
+[node name="SideScreen" parent="Art" node_paths=PackedStringArray("side_screen_ui") instance=ExtResource("6_te6x1")]
+position = Vector2(775, 192)
+side_screen_ui = NodePath("../../CanvasLayer/SideScreenUI")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Explosion Effect" parent="CanvasLayer" instance=ExtResource("5_kwxrp")]
+
+[node name="SideScreenUI" parent="CanvasLayer" instance=ExtResource("7_al8yd")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="TEMPERATURESYSTEM" type="Node" parent="."]
 
-[node name="TempDisplay" parent="TEMPERATURESYSTEM" instance=ExtResource("1_khmli")]
-position = Vector2(325, 12)
-
 [node name="TemperatureController" parent="TEMPERATURESYSTEM" node_paths=PackedStringArray("temperature_display", "heating_system", "cooling_system") instance=ExtResource("2_ge26w")]
-temperature_display = NodePath("../TempDisplay")
+temperature_display = NodePath("../../Art/TempDisplay")
 heating_system = NodePath("../HeatingComponent")
 cooling_system = NodePath("../CoolingComponent")
 
@@ -54,6 +72,7 @@ cooling_system = NodePath("../CoolingComponent")
 [node name="HeatingComponent" parent="TEMPERATURESYSTEM" instance=ExtResource("4_jxf6i")]
 
 [node name="TEMP CANVAS LAYER" type="CanvasLayer" parent="TEMPERATURESYSTEM"]
+visible = false
 
 [node name="HeatingButton" type="Button" parent="TEMPERATURESYSTEM/TEMP CANVAS LAYER" node_paths=PackedStringArray("heating_system", "cooling_button")]
 anchors_preset = 6

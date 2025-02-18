@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnhe1wc6qjqdu"]
+
+[ext_resource type="Script" path="res://scripts/side_screen.gd" id="1_ykhtc"]
+[ext_resource type="Texture2D" uid="uid://dme2xt8h8awsx" path="res://assets/sprites/sidescreenspritesheet.png" id="2_inqvh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44gpd"]
+atlas = ExtResource("2_inqvh")
+region = Rect2(0, 0, 268, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74bt8"]
+atlas = ExtResource("2_inqvh")
+region = Rect2(268, 0, 268, 122)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f028r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44gpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74bt8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7y7e"]
+size = Vector2(110, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqnqy"]
+size = Vector2(223, 113)
+
+[node name="SideScreen" type="Node2D"]
+script = ExtResource("1_ykhtc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f028r")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AppearArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AppearArea"]
+position = Vector2(-186.5, 0)
+shape = SubResource("RectangleShape2D_x7y7e")
+
+[node name="OpenCloseArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpenCloseArea2D"]
+position = Vector2(-16.5, -0.5)
+shape = SubResource("RectangleShape2D_sqnqy")
+
+[connection signal="mouse_entered" from="AppearArea" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="input_event" from="OpenCloseArea2D" to="." method="_on_open_close_area_2d_input_event"]
