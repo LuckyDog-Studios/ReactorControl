@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://rklyl7n75bsr"]
+[gd_scene load_steps=7 format=3 uid="uid://rklyl7n75bsr"]
 
 [ext_resource type="Texture2D" uid="uid://wddbyrckmlp7" path="res://assets/sprites/side_screen_texture1.png" id="1_pwui2"]
-[ext_resource type="Script" path="res://scripts/side_screen_ui.gd" id="1_torgl"]
+[ext_resource type="Script" path="res://scripts/screen_ui/side_screen_ui.gd" id="1_torgl"]
 [ext_resource type="Shader" path="res://shader scripts/side_screen_ui.gdshader" id="3_g50me"]
+[ext_resource type="Script" path="res://scripts/screen_ui/system_backend_screen.gd" id="3_kefcu"]
+[ext_resource type="FontFile" uid="uid://cf53d0mfrb3i2" path="res://assets/fonts/VT323/vt323-latin-400-normal.ttf" id="4_d3ijp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ephj6"]
 shader = ExtResource("3_g50me")
@@ -11,6 +13,7 @@ shader_parameter/speed = 40.0
 
 [node name="SideScreenUI" type="Control"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 320.0
@@ -44,6 +47,7 @@ offset_right = 173.0
 offset_bottom = 132.0
 
 [node name="HOME SCREEN" type="GridContainer" parent="SCREEN CONTAINER"]
+visible = false
 layout_mode = 2
 columns = 3
 
@@ -102,12 +106,21 @@ layout_mode = 2
 color = Color(0.458824, 1, 1, 1)
 
 [node name="SYSTEM BACKEND SCREEN" type="PanelContainer" parent="SCREEN CONTAINER"]
-visible = false
+layout_mode = 2
+script = ExtResource("3_kefcu")
+
+[node name="TextEdit" type="TextEdit" parent="SCREEN CONTAINER/SYSTEM BACKEND SCREEN"]
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="SCREEN CONTAINER/SYSTEM BACKEND SCREEN"]
 layout_mode = 2
-color = Color(0.0312467, 0.15749, 0.267441, 1)
+mouse_filter = 2
+color = Color(0.0150208, 6.07952e-06, 0.108932, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SCREEN CONTAINER/SYSTEM BACKEND SCREEN"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_d3ijp")
 
 [node name="CLOSE_BUTTON" type="Button" parent="SCREEN CONTAINER"]
 layout_mode = 2
@@ -130,5 +143,7 @@ mouse_filter = 2
 [connection signal="pressed" from="SCREEN CONTAINER/HOME SCREEN/ElectricityButton" to="." method="_on_electricity_button_pressed"]
 [connection signal="pressed" from="SCREEN CONTAINER/HOME SCREEN/CoolantButton" to="." method="_on_coolant_button_pressed"]
 [connection signal="pressed" from="SCREEN CONTAINER/HOME SCREEN/SystemBackendButton" to="." method="_on_system_backend_button_pressed"]
+[connection signal="gui_input" from="SCREEN CONTAINER/SYSTEM BACKEND SCREEN/TextEdit" to="SCREEN CONTAINER/SYSTEM BACKEND SCREEN" method="_on_text_edit_gui_input"]
+[connection signal="text_changed" from="SCREEN CONTAINER/SYSTEM BACKEND SCREEN/TextEdit" to="SCREEN CONTAINER/SYSTEM BACKEND SCREEN" method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="SCREEN CONTAINER/CLOSE_BUTTON" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="SCREEN CONTAINER/HOME_BUTTON" to="." method="_on_home_button_pressed"]

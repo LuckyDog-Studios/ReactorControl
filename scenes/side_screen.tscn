@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dnhe1wc6qjqdu"]
 
-[ext_resource type="Script" path="res://scripts/side_screen.gd" id="1_ykhtc"]
+[ext_resource type="Script" path="res://scripts/screen_ui/side_screen.gd" id="1_ykhtc"]
 [ext_resource type="Texture2D" uid="uid://dme2xt8h8awsx" path="res://assets/sprites/sidescreenspritesheet.png" id="2_inqvh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_44gpd"]
@@ -26,7 +26,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7y7e"]
-size = Vector2(110, 200)
+size = Vector2(210.5, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqnqy"]
 size = Vector2(223, 113)
@@ -42,7 +42,7 @@ autoplay = "idle"
 [node name="AppearArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AppearArea"]
-position = Vector2(-186.5, 0)
+position = Vector2(-236.75, 0)
 shape = SubResource("RectangleShape2D_x7y7e")
 
 [node name="OpenCloseArea2D" type="Area2D" parent="."]
