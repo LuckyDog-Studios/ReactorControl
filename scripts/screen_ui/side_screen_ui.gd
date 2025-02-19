@@ -46,4 +46,5 @@ func _on_coolant_button_pressed() -> void:
 
 func _on_system_backend_button_pressed() -> void:
 	current_state = ui_states.SYSTEM_BACKEND
+	system_backend_screen._enter_state()
 	update_ui()
